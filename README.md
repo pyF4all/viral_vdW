@@ -1,2 +1,2 @@
-# viral_vdW
-Numerical implementation of the Lifschitz theory for calculating the vdW forces betwee a virus and a flat and corrugated surface
+# IcosahedralRep
+The final goal of this project is describing the van der Waals interactions between a non-enveloped icosahedral virus and a corrugated surface, particularly a cellular membrane.
