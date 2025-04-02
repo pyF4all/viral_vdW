@@ -39,11 +39,17 @@ def deriv(A_z, z):
     dA_z = np.empty(len(A_z))
     h = z[1] - z[0]
 
-    # First and last two terms
-    dA_z[0]  = (A_z[1]  - A_z[0])/h
-    dA_z[1]  = (A_z[2]  - A_z[0])/(2*h)
-    dA_z[-2] = (A_z[-1] - A_z[-3])/(2*h)
-    dA_z[-1] = (A_z[-1] - A_z[-2])/h
+    # previous derivative on the boundary
+    # dA_z[0]  = (A_z[1]  - A_z[0])/h
+    # dA_z[1]  = (A_z[2]  - A_z[0])/(2*h)
+    # dA_z[-2] = (A_z[-1] - A_z[-3])/(2*h)
+    # dA_z[-1] = (A_z[-1] - A_z[-2])/h
+
+    # First and last two terms with fourth order schemes
+    dA_z[0]  = ((-1/4)*A_z[4] + (4/3)*A_z[3] + (-3)*A_z[2] + (4)*A_z[1] + (-25/12)*A_z[0])/h 
+    dA_z[1]  = ((-1/4)*A_z[5] + (4/3)*A_z[4] + (-3)*A_z[3] + (4)*A_z[2] + (-25/12)*A_z[1])/h 
+    dA_z[-2]  = ((1/4)*A_z[-6] + (4/3)*A_z[-5] + (3)*A_z[-4] + (4)*A_z[-3] + (25/12)*A_z[-2])/h 
+    dA_z[-1]  = ((1/4)*A_z[-5] + (4/3)*A_z[-4] + (3)*A_z[-3] + (4)*A_z[-2] + (25/12)*A_z[-1])/h 
 
     # Rest of the terms
     for i in np.arange(2,len(A_z)-2):
